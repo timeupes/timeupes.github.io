@@ -142,6 +142,30 @@
       opacity: 0.7;
       margin-bottom: 20px;
     }
+
+    /* PANTALLA FINAL */
+    .big-btn {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 700;
+      padding: 18px;
+      border-radius: 16px;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .stats {
+      margin-top: 20px;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: left;
+    }
+
+    .stats div {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
   </style>
 </head>
 
@@ -183,10 +207,10 @@
 
       <div class="input-box">
         <label>Correo Electrónico</label>
-        <input type="email" placeholder="tucorreo@email.com">
+        <input id="email" type="email" placeholder="tucorreo@email.com">
       </div>
 
-      <button class="btn" onclick="goTo('verify')">Continuar</button>
+      <button class="btn" onclick="startVerification()">Continuar</button>
 
       <div class="link">¿No tienes una cuenta? Registrarse</div>
 
@@ -205,27 +229,88 @@
       </p>
 
       <div class="code-boxes">
-        <input maxlength="1">
-        <input maxlength="1">
-        <input maxlength="1">
-        <input maxlength="1">
-        <input maxlength="1">
-        <input maxlength="1">
+        <input maxlength="1" class="code">
+        <input maxlength="1" class="code">
+        <input maxlength="1" class="code">
+        <input maxlength="1" class="code">
+        <input maxlength="1" class="code">
+        <input maxlength="1" class="code">
       </div>
 
-      <div class="timer">Reenviar código en 53 segundos</div>
+      <div class="timer" id="timer">Reenviar código en 60 segundos</div>
 
-      <button class="btn">Verificar</button>
+      <button class="btn" onclick="checkCode()">Verificar</button>
 
       <div class="link">Abrir App de Correo</div>
 
     </div>
   </div>
 
+  <!-- PANTALLA 4: INICIO (LA QUE ME MOSTRASTE) -->
+  <div id="home" class="screen">
+    <div class="container">
+
+      <h1>monk.</h1>
+
+      <button class="big-btn">Toca o Mantén para Bloquear</button>
+
+      <div class="stats">
+        <h3>Actividad de Hoy</h3>
+        <div>⏳ 4:41 Tiempo Bloqueado</div>
+        <div>📱 2 Sesiones</div>
+        <div>🔥 Racha: 3 días</div>
+      </div>
+
+    </div>
+  </div>
+
   <script>
+    let timerInterval;
+    let timeLeft = 60;
+    const correctCode = "123456";
+
     function goTo(screen) {
       document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
       document.getElementById(screen).classList.add("active");
+    }
+
+    function startVerification() {
+      goTo("verify");
+      startTimer();
+    }
+
+    function startTimer() {
+      timeLeft = 60;
+      document.getElementById("timer").textContent = "Reenviar código en 60 segundos";
+
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent =
+          "Reenviar código en " + timeLeft + " segundos";
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          document.getElementById("timer").textContent = "Código expirado";
+        }
+      }, 1000);
+    }
+
+    function checkCode() {
+      const inputs = document.querySelectorAll(".code");
+      let entered = "";
+      inputs.forEach(i => entered += i.value);
+
+      if (timeLeft <= 0) {
+        alert("El código ha expirado.");
+        return;
+      }
+
+      if (entered === correctCode) {
+        goTo("home");
+      } else {
+        alert("Código incorrecto.");
+      }
     }
   </script>
 
