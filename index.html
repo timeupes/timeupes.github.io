@@ -1,342 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Monk</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0f172a;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding: 20px;
-      text-align: center;
-    }
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #0f172a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
 
-    .screen {
-      max-width: 420px;
-      width: 100%;
-      display: none;
-    }
+  .container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+  }
 
-    .active {
-      display: block;
-    }
+  /* TELÉFONO */
+  .phone-box {
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto 30px auto;
+    background: #1e293b;
+    border-radius: 32px;
+    padding: 40px 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
 
-    .container {
-      max-width: 420px;
-      width: 100%;
-    }
+  .phone-title {
+    font-size: 22px;
+    opacity: 0.8;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
 
-    /* PANTALLA 1 */
-    .phone {
-      width: 100%;
-      max-width: 260px;
-      margin: 0 auto 20px auto;
-      padding: 40px 20px;
-      background: #1e293b;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
+  .blocked {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
 
-    .blocked {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
+  .sub {
+    font-size: 13px;
+    opacity: 0.7;
+    line-height: 1.4;
+  }
 
-    .sub {
-      font-size: 13px;
-      opacity: 0.7;
-      line-height: 1.4;
-    }
+  /* TEXTO INFERIOR */
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
 
-    .btn {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: white;
-      color: #0f172a;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-    }
+  p {
+    font-size: 15px;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    line-height: 1.4;
+  }
 
-    .link {
-      margin-top: 12px;
-      font-size: 14px;
-      opacity: 0.7;
-      cursor: pointer;
-    }
+  /* BOTÓN */
+  .btn {
+    width: 100%;
+    background: white;
+    color: #0f172a;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
 
-    /* LOGIN */
-    .input-box {
-      text-align: left;
-      margin-bottom: 20px;
-    }
+  .link {
+    font-size: 14px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+</style>
 
-    label {
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border-radius: 10px;
-      border: none;
-      background: #1e293b;
-      color: white;
-      font-size: 15px;
-      text-align: left;
-    }
-
-    .back {
-      text-align: left;
-      margin-bottom: 20px;
-      cursor: pointer;
-      opacity: 0.7;
-      font-size: 14px;
-    }
-
-    /* VERIFICACIÓN */
-    .code-boxes {
-      display: flex;
-      justify-content: space-between;
-      margin: 20px 0;
-    }
-
-    .code-boxes input {
-      width: 48px;
-      height: 55px;
-      font-size: 22px;
-      border-radius: 12px;
-      text-align: center;
-      background: #1e293b;
-      border: none;
-      color: white;
-    }
-
-    .timer {
-      font-size: 14px;
-      opacity: 0.7;
-      margin-bottom: 20px;
-    }
-
-    /* HOME */
-    .big-btn {
-      background: #38bdf8;
-      color: #0f172a;
-      font-weight: 700;
-      padding: 18px;
-      border-radius: 16px;
-      font-size: 18px;
-      margin-bottom: 20px;
-      border: none;
-      width: 100%;
-    }
-
-    .card {
-      background: #1e293b;
-      padding: 16px;
-      border-radius: 16px;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      background: #1e293b;
-      padding: 14px 20px;
-      border-radius: 16px;
-      margin-top: 20px;
-    }
-
-    .nav div {
-      flex: 1;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    .nav .active-tab {
-      color: white;
-    }
-
-    .nav .inactive {
-      opacity: 0.6;
-    }
-  </style>
 </head>
-
 <body>
 
-  <!-- PANTALLA 1: BIENVENIDA -->
-  <div id="welcome" class="screen active">
-    <div class="container">
+<div class="container">
 
-      <div class="phone">
-        <h2 style="opacity:0.8; margin:0 0 10px 0;">monk.</h2>
-        <div class="blocked">Instagram is blocked</div>
-        <div class="sub">
-          You are currently in Monk Mode,<br>
-          tap your Monk to access this app.
-        </div>
-      </div>
-
-      <h1 style="font-size:28px; margin-bottom:10px;">Bienvenido a Monk</h1>
-      <p style="opacity:0.8; margin-bottom:20px;">
-        Bloquea distracciones y recupera el control de tu tiempo con un simple gesto.
-      </p>
-
-      <button class="btn" onclick="goTo('login')">Comenzar</button>
-
-      <div class="link">¿Ya tienes una cuenta?</div>
-
+  <!-- BLOQUE DEL TELÉFONO -->
+  <div class="phone-box">
+    <div class="phone-title">monk.</div>
+    <div class="blocked">Instagram is blocked</div>
+    <div class="sub">
+      You are currently in Monk Mode,<br>
+      tap your Monk to access this app.
     </div>
   </div>
 
-  <!-- PANTALLA 2: LOGIN -->
-  <div id="login" class="screen">
-    <div class="container">
+  <!-- TEXTO INFERIOR -->
+  <h1>Bienvenido a Monk</h1>
 
-      <div class="back" onclick="goTo('welcome')">← Atrás</div>
+  <p>
+    Bloquea distracciones y recupera el control de tu tiempo con un simple gesto.
+  </p>
 
-      <h1 style="font-size:24px; margin-bottom:6px;">Bienvenido de Nuevo</h1>
-      <p style="font-size:14px;">
-        Inicia sesión para continuar. Te enviaremos un código de seis dígitos para verificar tu inicio de sesión.
-      </p>
+  <button class="btn">Comenzar</button>
 
-      <div class="input-box">
-        <label>Correo Electrónico</label>
-        <input id="email" type="email" placeholder="tucorreo@email.com">
-      </div>
+  <div class="link">¿Ya tienes una cuenta?</div>
 
-      <button class="btn" onclick="startVerification()">Continuar</button>
-
-      <div class="link">¿No tienes una cuenta? Registrarse</div>
-
-    </div>
-  </div>
-
-  <!-- PANTALLA 3: VERIFICACIÓN -->
-  <div id="verify" class="screen">
-    <div class="container">
-
-      <div class="back" onclick="goTo('login')">← Atrás</div>
-
-      <h1 style="font-size:24px; margin-bottom:6px;">Verifica tu inicio de sesión</h1>
-      <p style="font-size:14px;">
-        Te hemos enviado un código de 6 dígitos a tu correo.
-      </p>
-
-      <div class="code-boxes">
-        <input maxlength="1" class="code">
-        <input maxlength="1" class="code">
-        <input maxlength="1" class="code">
-        <input maxlength="1" class="code">
-        <input maxlength="1" class="code">
-        <input maxlength="1" class="code">
-      </div>
-
-      <div class="timer" id="timer">Reenviar código en 60 segundos</div>
-
-      <button class="btn" onclick="checkCode()">Verificar</button>
-
-      <div class="link">Abrir App de Correo</div>
-
-    </div>
-  </div>
-
-  <!-- PANTALLA 4: HOME -->
-  <div id="home" class="screen">
-    <div class="container">
-
-      <h1 style="font-size:28px; margin-bottom:20px;">monk.</h1>
-
-      <button class="big-btn">Toca o Mantén para Bloquear</button>
-
-      <div class="card">
-        <h3 style="margin:0 0 10px 0; font-size:18px;">Foco</h3>
-        <div style="opacity:0.8; font-size:15px;">2 apps</div>
-        <div style="opacity:0.8; font-size:15px;">2 dominios</div>
-      </div>
-
-      <div class="card">
-        <h3 style="margin:0 0 10px 0; font-size:18px;">Actividad de Hoy</h3>
-        <div style="font-size:15px; margin-bottom:6px;">⏳ 4:41 Tiempo Bloqueado</div>
-        <div style="font-size:15px; margin-bottom:6px;">#️⃣ 2 Sesiones</div>
-        <div style="font-size:15px;">🔥 3 Racha Diaria</div>
-      </div>
-
-      <div class="nav">
-        <div class="active-tab">Inicio</div>
-        <div class="inactive">Actividad</div>
-        <div class="inactive">Clasificación</div>
-        <div class="inactive">Ajustes</div>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    let timerInterval;
-    let timeLeft = 60;
-    const correctCode = "123456";
-
-    function goTo(screen) {
-      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-      document.getElementById(screen).classList.add("active");
-    }
-
-    function startVerification() {
-      goTo("verify");
-      startTimer();
-    }
-
-    function startTimer() {
-      timeLeft = 60;
-      document.getElementById("timer").textContent = "Reenviar código en 60 segundos";
-
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        document.getElementById("timer").textContent =
-          "Reenviar código en " + timeLeft + " segundos";
-
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          document.getElementById("timer").textContent = "Código expirado";
-        }
-      }, 1000);
-    }
-
-    function checkCode() {
-      const inputs = document.querySelectorAll(".code");
-      let entered = "";
-      inputs.forEach(i => entered += i.value);
-
-      if (timeLeft <= 0) {
-        alert("El código ha expirado.");
-        return;
-      }
-
-      if (entered === correctCode) {
-        goTo("home");
-      } else {
-        alert("Código incorrecto.");
-      }
-    }
-  </script>
+</div>
 
 </body>
 </html>
