@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Sanctuary</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 16px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .modo {
+      background: #334155;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modo span {
+      font-size: 14px;
+    }
+
+    .add-box {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #475569;
+      color: white;
+    }
+
+    .small-btn {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #38bdf8;
+      color: #0f172a;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <h1>Your Sanctuary</h1>
+
+    <!-- INICIO -->
+    <div class="card">
+      <h2 style="margin:0 0 10px 0;">Modos</h2>
+      <p style="font-size:14px; opacity:0.7;">Crea tus propios modos de desconexión.</p>
+
+      <div id="lista-modos"></div>
+
+      <div class="add-box">
+        <input id="nuevoModo" type="text" placeholder="Nombre del modo..." />
+        <button class="small-btn" onclick="agregarModo()">+</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const lista = document.getElementById("lista-modos");
+    const input = document.getElementById("nuevoModo");
+
+    function agregarModo() {
+      const nombre = input.value.trim();
+      if (nombre === "") return;
+
+      const div = document.createElement("div");
+      div.className = "modo";
+      div.innerHTML = `
+        <span>${nombre}</span>
+        <button class="small-btn" onclick="activarModo('${nombre}')">Activar</button>
+      `;
+
+      lista.appendChild(div);
+      input.value = "";
+    }
+
+    function activarModo(nombre) {
+      alert("Modo activado: " + nombre);
+    }
+  </script>
+
+</body>
+</html>
