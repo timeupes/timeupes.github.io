@@ -19,6 +19,16 @@
       text-align: center;
     }
 
+    .screen {
+      max-width: 420px;
+      width: 100%;
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
     .container {
       max-width: 420px;
       width: 100%;
@@ -82,33 +92,142 @@
       opacity: 0.7;
       cursor: pointer;
     }
+
+    .input-box {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 10px;
+      border: none;
+      background: #1e293b;
+      color: white;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .back {
+      text-align: left;
+      margin-bottom: 20px;
+      cursor: pointer;
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    /* VERIFICACIÓN */
+    .code-boxes {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+
+    .code-boxes input {
+      width: 48px;
+      height: 55px;
+      font-size: 22px;
+      border-radius: 12px;
+    }
+
+    .timer {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <!-- PANTALLA 1: BIENVENIDA -->
+  <div id="welcome" class="screen active">
+    <div class="container">
 
-    <!-- MÓVIL BLOQUEANDO APP -->
-    <div class="phone">
-      <h2>monk.</h2>
-      <div class="blocked">Instagram está bloqueado</div>
-      <div class="sub">
-        Estás en Monk Mode.<br>
-        Toca tu Monk para acceder a esta app.
+      <div class="phone">
+        <h2>monk.</h2>
+        <div class="blocked">Instagram está bloqueado</div>
+        <div class="sub">
+          Estás en Monk Mode.<br>
+          Toca tu Monk para acceder a esta app.
+        </div>
       </div>
+
+      <h1>Bienvenido a Monk</h1>
+      <p>Bloquea distracciones y recupera el control de tu tiempo con un simple gesto.</p>
+
+      <button class="btn" onclick="goTo('login')">Comenzar</button>
+
+      <div class="link">¿Ya tienes una cuenta?</div>
+
     </div>
-
-    <!-- TEXTO PRINCIPAL -->
-    <h1>Bienvenido a Monk</h1>
-    <p>Bloquea distracciones y recupera el control de tu tiempo con un simple gesto.</p>
-
-    <!-- BOTÓN -->
-    <button class="btn">Comenzar</button>
-
-    <div class="link">¿Ya tienes una cuenta?</div>
-
   </div>
+
+  <!-- PANTALLA 2: LOGIN -->
+  <div id="login" class="screen">
+    <div class="container">
+
+      <div class="back" onclick="goTo('welcome')">← Atrás</div>
+
+      <h1 style="font-size:24px; margin-bottom:6px;">Bienvenido de Nuevo</h1>
+      <p style="font-size:14px;">
+        Te enviaremos un código de seis dígitos para verificar tu inicio de sesión.
+      </p>
+
+      <div class="input-box">
+        <label>Correo Electrónico</label>
+        <input type="email" placeholder="tucorreo@email.com">
+      </div>
+
+      <button class="btn" onclick="goTo('verify')">Continuar</button>
+
+      <div class="link">¿No tienes una cuenta? Registrarse</div>
+
+    </div>
+  </div>
+
+  <!-- PANTALLA 3: VERIFICACIÓN -->
+  <div id="verify" class="screen">
+    <div class="container">
+
+      <div class="back" onclick="goTo('login')">← Atrás</div>
+
+      <h1 style="font-size:24px; margin-bottom:6px;">Verifica tu inicio de sesión</h1>
+      <p style="font-size:14px;">
+        Te hemos enviado un código de 6 dígitos a tu correo.
+      </p>
+
+      <div class="code-boxes">
+        <input maxlength="1">
+        <input maxlength="1">
+        <input maxlength="1">
+        <input maxlength="1">
+        <input maxlength="1">
+        <input maxlength="1">
+      </div>
+
+      <div class="timer">Reenviar código en 53 segundos</div>
+
+      <button class="btn">Verificar</button>
+
+      <div class="link">Abrir App de Correo</div>
+
+    </div>
+  </div>
+
+  <script>
+    function goTo(screen) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById(screen).classList.add("active");
+    }
+  </script>
 
 </body>
 </html>
