@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      font-family: system-ui, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #0f172a;
       color: white;
       display: flex;
@@ -34,6 +34,7 @@
       width: 100%;
     }
 
+    /* PANTALLA 1 */
     .phone {
       width: 100%;
       max-width: 260px;
@@ -42,12 +43,6 @@
       background: #1e293b;
       border-radius: 30px;
       border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .phone h2 {
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      opacity: 0.8;
     }
 
     .blocked {
@@ -60,17 +55,6 @@
       font-size: 13px;
       opacity: 0.7;
       line-height: 1.4;
-    }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      opacity: 0.8;
-      margin-bottom: 20px;
-      font-size: 15px;
     }
 
     .btn {
@@ -93,6 +77,7 @@
       cursor: pointer;
     }
 
+    /* LOGIN */
     .input-box {
       text-align: left;
       margin-bottom: 20px;
@@ -112,7 +97,7 @@
       background: #1e293b;
       color: white;
       font-size: 15px;
-      text-align: center;
+      text-align: left;
     }
 
     .back {
@@ -135,6 +120,10 @@
       height: 55px;
       font-size: 22px;
       border-radius: 12px;
+      text-align: center;
+      background: #1e293b;
+      border: none;
+      color: white;
     }
 
     .timer {
@@ -143,7 +132,7 @@
       margin-bottom: 20px;
     }
 
-    /* PANTALLA FINAL */
+    /* HOME */
     .big-btn {
       background: #38bdf8;
       color: #0f172a;
@@ -151,20 +140,40 @@
       padding: 18px;
       border-radius: 16px;
       font-size: 18px;
-      margin-top: 20px;
+      margin-bottom: 20px;
+      border: none;
+      width: 100%;
     }
 
-    .stats {
-      margin-top: 20px;
+    .card {
       background: #1e293b;
-      padding: 20px;
+      padding: 16px;
       border-radius: 16px;
       text-align: left;
+      margin-bottom: 20px;
     }
 
-    .stats div {
-      margin-bottom: 8px;
-      font-size: 15px;
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      background: #1e293b;
+      padding: 14px 20px;
+      border-radius: 16px;
+      margin-top: 20px;
+    }
+
+    .nav div {
+      flex: 1;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .nav .active-tab {
+      color: white;
+    }
+
+    .nav .inactive {
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -176,16 +185,18 @@
     <div class="container">
 
       <div class="phone">
-        <h2>monk.</h2>
-        <div class="blocked">Instagram está bloqueado</div>
+        <h2 style="opacity:0.8; margin:0 0 10px 0;">monk.</h2>
+        <div class="blocked">Instagram is blocked</div>
         <div class="sub">
-          Estás en Monk Mode.<br>
-          Toca tu Monk para acceder a esta app.
+          You are currently in Monk Mode,<br>
+          tap your Monk to access this app.
         </div>
       </div>
 
-      <h1>Bienvenido a Monk</h1>
-      <p>Bloquea distracciones y recupera el control de tu tiempo con un simple gesto.</p>
+      <h1 style="font-size:28px; margin-bottom:10px;">Bienvenido a Monk</h1>
+      <p style="opacity:0.8; margin-bottom:20px;">
+        Bloquea distracciones y recupera el control de tu tiempo con un simple gesto.
+      </p>
 
       <button class="btn" onclick="goTo('login')">Comenzar</button>
 
@@ -202,7 +213,7 @@
 
       <h1 style="font-size:24px; margin-bottom:6px;">Bienvenido de Nuevo</h1>
       <p style="font-size:14px;">
-        Te enviaremos un código de seis dígitos para verificar tu inicio de sesión.
+        Inicia sesión para continuar. Te enviaremos un código de seis dígitos para verificar tu inicio de sesión.
       </p>
 
       <div class="input-box">
@@ -246,19 +257,32 @@
     </div>
   </div>
 
-  <!-- PANTALLA 4: INICIO (LA QUE ME MOSTRASTE) -->
+  <!-- PANTALLA 4: HOME -->
   <div id="home" class="screen">
     <div class="container">
 
-      <h1>monk.</h1>
+      <h1 style="font-size:28px; margin-bottom:20px;">monk.</h1>
 
       <button class="big-btn">Toca o Mantén para Bloquear</button>
 
-      <div class="stats">
-        <h3>Actividad de Hoy</h3>
-        <div>⏳ 4:41 Tiempo Bloqueado</div>
-        <div>📱 2 Sesiones</div>
-        <div>🔥 Racha: 3 días</div>
+      <div class="card">
+        <h3 style="margin:0 0 10px 0; font-size:18px;">Foco</h3>
+        <div style="opacity:0.8; font-size:15px;">2 apps</div>
+        <div style="opacity:0.8; font-size:15px;">2 dominios</div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 10px 0; font-size:18px;">Actividad de Hoy</h3>
+        <div style="font-size:15px; margin-bottom:6px;">⏳ 4:41 Tiempo Bloqueado</div>
+        <div style="font-size:15px; margin-bottom:6px;">#️⃣ 2 Sesiones</div>
+        <div style="font-size:15px;">🔥 3 Racha Diaria</div>
+      </div>
+
+      <div class="nav">
+        <div class="active-tab">Inicio</div>
+        <div class="inactive">Actividad</div>
+        <div class="inactive">Clasificación</div>
+        <div class="inactive">Ajustes</div>
       </div>
 
     </div>
