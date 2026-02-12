@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Sanctuary</title>
+  <title>Monk</title>
 
   <style>
     body {
@@ -13,124 +13,102 @@
       color: white;
       display: flex;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
       padding: 20px;
+      text-align: center;
     }
 
-    .app {
-      width: 100%;
+    .container {
       max-width: 420px;
+      width: 100%;
+    }
+
+    .phone {
+      width: 100%;
+      max-width: 260px;
+      margin: 0 auto 20px auto;
+      padding: 40px 20px;
+      background: #1e293b;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .phone h2 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    .blocked {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .sub {
+      font-size: 13px;
+      opacity: 0.7;
+      line-height: 1.4;
     }
 
     h1 {
-      font-size: 26px;
+      font-size: 28px;
       margin-bottom: 10px;
     }
 
-    .card {
-      background: #1e293b;
-      padding: 16px;
-      border-radius: 14px;
-      margin-bottom: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
+    p {
+      opacity: 0.8;
+      margin-bottom: 20px;
+      font-size: 15px;
     }
 
     .btn {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       border: none;
-      border-radius: 10px;
-      background: #38bdf8;
+      border-radius: 12px;
+      background: white;
       color: #0f172a;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
+      font-size: 16px;
       margin-top: 10px;
     }
 
-    .modo {
-      background: #334155;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modo span {
+    .link {
+      margin-top: 12px;
       font-size: 14px;
-    }
-
-    .add-box {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    input {
-      flex: 1;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      background: #475569;
-      color: white;
-    }
-
-    .small-btn {
-      padding: 10px 14px;
-      border: none;
-      border-radius: 8px;
-      background: #38bdf8;
-      color: #0f172a;
+      opacity: 0.7;
       cursor: pointer;
-      font-weight: 600;
     }
   </style>
 </head>
 
 <body>
-  <div class="app">
 
-    <h1>Your Sanctuary</h1>
+  <div class="container">
 
-    <!-- INICIO -->
-    <div class="card">
-      <h2 style="margin:0 0 10px 0;">Modos</h2>
-      <p style="font-size:14px; opacity:0.7;">Crea tus propios modos de desconexión.</p>
-
-      <div id="lista-modos"></div>
-
-      <div class="add-box">
-        <input id="nuevoModo" type="text" placeholder="Nombre del modo..." />
-        <button class="small-btn" onclick="agregarModo()">+</button>
+    <!-- MÓVIL BLOQUEANDO APP -->
+    <div class="phone">
+      <h2>monk.</h2>
+      <div class="blocked">Instagram está bloqueado</div>
+      <div class="sub">
+        Estás en Monk Mode.<br>
+        Toca tu Monk para acceder a esta app.
       </div>
     </div>
 
+    <!-- TEXTO PRINCIPAL -->
+    <h1>Bienvenido a Monk</h1>
+    <p>Bloquea distracciones y recupera el control de tu tiempo con un simple gesto.</p>
+
+    <!-- BOTÓN -->
+    <button class="btn">Comenzar</button>
+
+    <div class="link">¿Ya tienes una cuenta?</div>
+
   </div>
-
-  <script>
-    const lista = document.getElementById("lista-modos");
-    const input = document.getElementById("nuevoModo");
-
-    function agregarModo() {
-      const nombre = input.value.trim();
-      if (nombre === "") return;
-
-      const div = document.createElement("div");
-      div.className = "modo";
-      div.innerHTML = `
-        <span>${nombre}</span>
-        <button class="small-btn" onclick="activarModo('${nombre}')">Activar</button>
-      `;
-
-      lista.appendChild(div);
-      input.value = "";
-    }
-
-    function activarModo(nombre) {
-      alert("Modo activado: " + nombre);
-    }
-  </script>
 
 </body>
 </html>
