@@ -1,0 +1,369 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --app-accent: #FF4D8D;
+    --app-bg: #f8fafc;
+    --app-bg-alt: #f1f5f9;
+    --app-text: #0f172a;
+    --app-text-muted: #475569;
+    --app-glass: rgba(0, 0, 0, 0.05);
+    --app-glass-border: rgba(0, 0, 0, 0.1);
+    --app-font: "Outfit", sans-serif;
+  }
+  :root.dark {
+    --app-bg: #050512;
+    --app-bg-alt: #12141D;
+    --app-text: #ffffff;
+    --app-text-muted: rgba(255, 255, 255, 0.6);
+    --app-glass: rgba(255, 255, 255, 0.05);
+    --app-glass-border: rgba(255, 255, 255, 0.1);
+  }
+  body {
+    background-color: var(--app-bg);
+    color: var(--app-text);
+  }
+}
+
+@theme {
+  --color-zenith-dark: var(--app-bg);
+  --color-zenith-violet: var(--app-accent);
+  --color-zenith-glass: var(--app-glass);
+  --color-zenith-lavender: var(--app-text-muted);
+  --color-zenith-charcoal: var(--app-bg-alt);
+  --color-zenith-card: var(--app-bg-alt);
+  --color-zenith-berry: var(--app-accent);
+  --color-zenith-silver: var(--app-text-muted);
+  --color-zenith-ocean: var(--app-bg-alt);
+  --color-zenith-blue: var(--app-accent);
+  --color-zenith-alert: #E11D48;
+  --color-usage-low: var(--app-accent);
+  --color-usage-medium: #3B82F6;
+  --color-usage-high: #4B5563;
+  --font-display: var(--app-font);
+  --font-serif: "Playfair Display", serif;
+}
+
+@layer utilities {
+  .glass-card {
+    background: var(--app-glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--app-glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  }
+  .floating-nav {
+    background: var(--app-bg);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--app-glass-border);
+  }
+  .tab-active {
+    position: relative;
+    color: var(--app-text);
+  }
+  .tab-active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--app-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--app-accent);
+  }
+  .rank-number {
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(180deg, var(--app-text-muted) 0%, var(--app-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-glow {
+    text-shadow: 0 0 12px rgba(216, 210, 255, 0.4);
+  }
+  .neomorphic-card {
+    background: var(--app-bg-alt);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1), -4px -4px 12px rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--app-glass-border);
+  }
+  .dark .neomorphic-card {
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.4), -4px -4px 12px rgba(255, 255, 255, 0.02);
+  }
+  .neomorphic-sunken {
+    background: var(--app-bg);
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.5);
+  }
+  .dark .neomorphic-sunken {
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -2px -2px 6px rgba(255, 255, 255, 0.02);
+  }
+  .organic-shape {
+    border-radius: 35% 35% 35% 35% / 35% 35% 35% 35%;
+  }
+  .ladrillito-surface {
+    background: radial-gradient(circle at 35% 25%, color-mix(in srgb, var(--app-accent) 60%, white) 0%, var(--app-accent) 45%, color-mix(in srgb, var(--app-accent) 40%, black) 85%, var(--app-bg) 100%);
+    box-shadow: inset 2px 2px 12px rgba(255, 255, 255, 0.5), inset -6px -6px 20px rgba(0,0,0,0.3), 0 25px 50px rgba(0, 0, 0, 0.2), 0 0 40px color-mix(in srgb, var(--app-accent) calc(var(--app-glow-intensity, 0.2) * 100%), transparent);
+  }
+  .dark .ladrillito-surface {
+    background: radial-gradient(circle at 35% 25%, color-mix(in srgb, var(--app-accent) 70%, white) 0%, var(--app-accent) 45%, color-mix(in srgb, var(--app-accent) 30%, black) 85%, var(--app-bg) 100%);
+    box-shadow: inset 2px 2px 12px rgba(255, 255, 255, 0.3), inset -6px -6px 20px rgba(0,0,0,0.8), 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px color-mix(in srgb, var(--app-accent) calc(var(--app-glow-intensity, 0.2) * 100%), transparent);
+  }
+  .debossed-text {
+    color: color-mix(in srgb, var(--app-accent) 40%, black);
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px rgba(255, 255, 255, 0.8);
+  }
+  .dark .debossed-text {
+    color: color-mix(in srgb, var(--app-accent) 30%, black);
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.8), 1px 1px 1px rgba(255, 255, 255, 0.2);
+  }
+  .debossed-time {
+    color: color-mix(in srgb, var(--login-color, #0EA5E9) 30%, black);
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.8), 1px 1px 1px rgba(255, 255, 255, 0.2);
+    transition: color 2s ease-in-out;
+  }
+  .silvery-glow {
+    color: var(--app-text);
+    text-shadow: 0 0 15px var(--app-glass-border);
+  }
+  .neomorphic-inset {
+    background: var(--app-bg);
+    box-shadow: inset 4px 4px 8px rgba(0,0,0,0.1), inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+  }
+  .dark .neomorphic-inset {
+    background: #08081A;
+    box-shadow: inset 4px 4px 8px rgba(0,0,0,0.6), inset -4px -4px 8px rgba(216, 210, 255, 0.05);
+  }
+  .neumorphic-card-3d {
+    background: var(--app-bg-alt);
+    box-shadow: 12px 12px 24px rgba(0,0,0,0.1), -12px -12px 24px rgba(255,255,255,0.8);
+    border: 1px solid var(--app-glass-border);
+  }
+  .dark .neumorphic-card-3d {
+    background: #1a1a20;
+    box-shadow: 12px 12px 24px #0a0a0d, -12px -12px 24px #2a2a33;
+  }
+  .tactile-upload {
+    background: var(--app-bg);
+    border: 2px dashed var(--app-glass-border);
+    box-shadow: inset 6px 6px 12px rgba(0,0,0,0.05), inset -6px -6px 12px rgba(255,255,255,0.5);
+  }
+  .dark .tactile-upload {
+    background: #15151a;
+    box-shadow: inset 6px 6px 12px #0a0a0d, inset -6px -6px 12px #202027;
+  }
+  .sunken-block {
+    background: var(--app-bg);
+    box-shadow: inset 8px 8px 16px rgba(0,0,0,0.05), inset -8px -8px 16px rgba(255,255,255,0.5);
+  }
+  .dark .sunken-block {
+    background: #0d0d10;
+    box-shadow: inset 8px 8px 16px #050507, inset -8px -8px 16px #151519;
+  }
+  .privacy-toggle {
+    background: var(--app-bg-alt);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.8);
+    transition: all 0.3s ease;
+  }
+  .dark .privacy-toggle {
+    background: #1a1a20;
+    box-shadow: 4px 4px 8px #08080a, -4px -4px 8px #2c2c36;
+  }
+  .privacy-toggle.active {
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1), 0 0 15px var(--app-accent);
+    border-color: var(--app-accent);
+  }
+  .dark .privacy-toggle.active {
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5), 0 0 15px var(--app-accent);
+  }
+  .button-3d-purple {
+    background: var(--app-accent);
+    box-shadow: 0 8px 0 rgba(0,0,0,0.2), 0 15px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    transition: all 0.1s ease;
+    color: white;
+  }
+  .button-3d-purple:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2), 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  .dark-glass-nav {
+    background: var(--app-bg);
+    backdrop-filter: blur(25px);
+    border-top: 1px solid var(--app-glass-border);
+  }
+  .serif-glow {
+    text-shadow: 0 0 20px var(--app-glass-border);
+  }
+  .neomorphic-container {
+    background: var(--app-bg-alt);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--app-glass-border);
+  }
+  .dark .neomorphic-container {
+    background: #1C1F2B;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4), -5px -5px 15px rgba(255, 255, 255, 0.02);
+  }
+  .neomorphic-toggle-btn {
+    background: var(--app-bg-alt);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -2px -2px 6px rgba(255,255,255,0.8);
+    transition: all 0.2s ease;
+  }
+  .dark .neomorphic-toggle-btn {
+    background: #1C1F2B;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3), -2px -2px 6px rgba(255,255,255,0.02);
+  }
+  .neomorphic-toggle-btn.active {
+    background: var(--app-bg);
+    box-shadow: inset 3px 3px 6px rgba(0,0,0,0.1), inset -1px -1px 4px rgba(255,255,255,0.5);
+    color: var(--app-text);
+  }
+  .dark .neomorphic-toggle-btn.active {
+    background: #14161F;
+    box-shadow: inset 3px 3px 6px rgba(0,0,0,0.4), inset -1px -1px 4px rgba(255,255,255,0.02);
+  }
+  .brick-preview {
+    transform: rotateX(25deg) rotateY(-25deg);
+    transform-style: preserve-3d;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.2), 0 0 30px var(--app-accent);
+  }
+  .dark .brick-preview {
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.5), 0 0 30px var(--app-accent);
+  }
+  .neumorphic-btn {
+    background: var(--app-bg-alt);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -2px -2px 6px rgba(255,255,255,0.8);
+  }
+  .dark .neumorphic-btn {
+    background: #08081A;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.4), -2px -2px 6px rgba(216, 210, 255, 0.05);
+  }
+  .neumorphic-btn:active {
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1), inset -1px -1px 3px rgba(255,255,255,0.5);
+  }
+  .dark .neumorphic-btn:active {
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.6), inset -1px -1px 3px rgba(216, 210, 255, 0.05);
+  }
+  .privacy-badge {
+    background: var(--app-glass);
+    border: 1px solid var(--app-glass-border);
+  }
+  .text-glow {
+    text-shadow: 0 0 12px var(--app-glass-border);
+  }
+  .neomorphic-raised {
+    background: var(--app-bg-alt);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1), -4px -4px 12px rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--app-glass-border);
+  }
+  .dark .neomorphic-raised {
+    background: #151824;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.4), -4px -4px 12px rgba(255, 255, 255, 0.03);
+  }
+  .toggle-track {
+    @apply w-12 h-6 rounded-full transition-colors duration-300 flex items-center px-1;
+  }
+  .toggle-dot {
+    @apply w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300;
+  }
+  .toggle-active .toggle-track { background-color: var(--app-accent); }
+  .toggle-active .toggle-dot { transform: translateX(24px); }
+  .toggle-strict .toggle-track { background-color: #991B1B; box-shadow: 0 0 10px rgba(225, 29, 72, 0.3); }
+  .toggle-strict .toggle-dot { transform: translateX(24px); }
+  .toggle-inactive .toggle-track { background-color: var(--app-glass-border); }
+  .neomorphic-button {
+    background: var(--app-bg-alt);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -2px -2px 8px rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--app-glass-border);
+    transition: all 0.2s ease;
+  }
+  .dark .neomorphic-button {
+    background: #1C1F2B;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), -2px -2px 8px rgba(255, 255, 255, 0.02);
+  }
+  .neomorphic-button:active {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transform: scale(0.98);
+  }
+  .dark .neomorphic-button:active {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  .neumorphic-day {
+    background: var(--app-bg-alt);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -2px -2px 6px rgba(255, 255, 255, 0.8);
+    transition: transform 0.2s ease;
+  }
+  .dark .neumorphic-day {
+    background: #0A0A1F;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4), -2px -2px 6px rgba(255, 255, 255, 0.02);
+  }
+  .day-low { background: linear-gradient(145deg, var(--app-accent), var(--app-accent)); border: 1px solid var(--app-glass-border); opacity: 0.7; }
+  .day-medium { background: linear-gradient(145deg, #2563EB, #3B82F6); border: 1px solid var(--app-glass-border); }
+  .day-high { background: linear-gradient(145deg, #374151, #4B5563); border: 1px solid var(--app-glass-border); }
+  .selected-day {
+    box-shadow: 0 0 15px var(--app-accent), inset 0 0 10px rgba(255,255,255,0.2);
+    transform: scale(1.05);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    opacity: 1;
+  }
+  .ladrillito-master {
+    background: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--login-color, #0EA5E9) 60%, white) 0%, var(--login-color, #0EA5E9) 45%, color-mix(in srgb, var(--login-color, #0EA5E9) 40%, black) 75%, #010D1A 100%);
+    box-shadow: inset 4px 4px 12px rgba(255, 255, 255, 0.3), inset -6px -6px 15px rgba(0, 0, 0, 0.8), 0 30px 60px -12px rgba(0, 0, 0, 0.9), 0 0 40px color-mix(in srgb, var(--login-color, #0EA5E9) calc(var(--app-glow-intensity, 0.2) * 100%), transparent);
+    transition: --login-color 2s ease-in-out, background 2s ease-in-out, box-shadow 2s ease-in-out;
+  }
+  .neumorphic-field {
+    background: var(--app-bg);
+    box-shadow: inset 6px 6px 14px rgba(0, 0, 0, 0.05), inset -2px -2px 6px rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--app-glass-border);
+  }
+  .dark .neumorphic-field {
+    background: #020817;
+    box-shadow: inset 6px 6px 14px rgba(0, 0, 0, 0.8), inset -2px -2px 6px rgba(255, 255, 255, 0.04);
+  }
+  .tactile-btn {
+    background: linear-gradient(145deg, #006bbd, #004578);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(165, 243, 252, 0.4), inset 0 -4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s ease;
+  }
+  .dark .tactile-btn {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(165, 243, 252, 0.4), inset 0 -4px 8px rgba(0, 0, 0, 0.4);
+  }
+  .tactile-btn:active {
+    transform: scale(0.98) translateY(2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  .dark .tactile-btn:active {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  .neomorphic-main-card {
+    background: var(--app-bg-alt);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--app-glass-border);
+  }
+  .dark .neomorphic-main-card {
+    background: #1C1F2B;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4), -5px -5px 15px rgba(255, 255, 255, 0.02);
+  }
+  .berry-button {
+    background: var(--app-bg-alt);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -2px -2px 8px rgba(255, 255, 255, 0.8), 0 0 15px var(--app-accent);
+    border: 1px solid var(--app-accent);
+    transition: all 0.2s ease;
+  }
+  .dark .berry-button {
+    background: #1C1F2B;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), -2px -2px 8px rgba(255, 255, 255, 0.02), 0 0 15px var(--app-accent);
+  }
+  .berry-button:active {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1), 0 0 5px var(--app-accent);
+    transform: scale(0.98);
+  }
+  .dark .berry-button:active {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 5px var(--app-accent);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

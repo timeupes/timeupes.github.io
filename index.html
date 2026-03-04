@@ -1,122 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    background: #0f172a;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-    padding-top: 40px;
-    text-align: center;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 420px;
-    padding: 0 22px;
-  }
-
-  /* BLOQUE DEL TELÉFONO */
-  .phone-box {
-    width: 100%;
-    max-width: 260px;
-    margin: 0 auto 32px auto;
-    background: #1e293b;
-    border-radius: 34px;
-    padding: 42px 22px;
-    border: 1px solid rgba(255,255,255,0.12);
-  }
-
-  .phone-title {
-    font-size: 20px;
-    opacity: 0.85;
-    margin-bottom: 14px;
-    font-weight: 600;
-  }
-
-  .blocked {
-    font-size: 19px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .sub {
-    font-size: 13px;
-    opacity: 0.7;
-    line-height: 1.45;
-  }
-
-  /* TEXTO INFERIOR */
-  h1 {
-    font-size: 27px;
-    margin-bottom: 12px;
-    font-weight: 700;
-  }
-
-  p {
-    font-size: 15px;
-    opacity: 0.8;
-    margin-bottom: 26px;
-    line-height: 1.45;
-  }
-
-  /* BOTÓN */
-  .btn {
-    width: 100%;
-    background: white;
-    color: #0f172a;
-    padding: 15px;
-    border-radius: 14px;
-    font-size: 16px;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 16px;
-  }
-
-  .link {
-    font-size: 14px;
-    opacity: 0.75;
-    cursor: pointer;
-  }
-</style>
-
-</head>
-<body>
-
-<div class="container">
-
-  <!-- BLOQUE DEL TELÉFONO -->
-  <div class="phone-box">
-    <div class="phone-title">monk.</div>
-    <div class="blocked">Instagram is blocked</div>
-    <div class="sub">
-      You are currently in Monk Mode,<br>
-      tap your Monk to access this app.
-    </div>
-  </div>
-
-  <!-- TEXTO INFERIOR -->
-  <h1>Bienvenido a Monk</h1>
-
-  <p>
-    Bloquea distracciones y recupera el control de tu tiempo con un simple gesto.
-  </p>
-
-  <button class="btn">Comenzar</button>
-
-  <div class="link">¿Ya tienes una cuenta?</div>
-
-</div>
-
-</body>
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zenith Deep Focus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  </head>
+  <body class="font-display selection:bg-purple-500 selection:text-white antialiased transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
+
